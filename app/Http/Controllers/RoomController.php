@@ -82,8 +82,8 @@ class RoomController extends Controller
         $start_date = $request ->input('start_date');
         $end_date = $request ->input('end_date');
         
-        $check = Reservation::whereNotBetween('start_date',  [$start_date, $end_date ])->whereNotBetween('end_date',  [$start_date, $end_date ])->value('room_id');
-        $rooms = Room::where('id', $check)->where('city', $request ->input('city'))->get();
+        $check = Reservation::whereBetween('start_date',  [$start_date, $end_date ])->whereBetween('end_date',  [$start_date, $end_date ])->value('room_id');
+        $rooms = Room::where('id', '!=', $check)->orWhereNull('id')->where('city', $request ->input('city'))->get();
         return view('rooms.search', compact('rooms'));
     }
 }
