@@ -33,3 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('send-message',"ChatboxController@index1");
+Route::post('send-message',"ChatboxController@postSendMessage");
+
+
