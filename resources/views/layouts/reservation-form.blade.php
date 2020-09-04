@@ -9,15 +9,15 @@
     <div class="row">
         <div class="col-md-6">
             <label>Check In</label>
-            <input type="text" id="reservation_start_date" name="start_date" class="form-control"
-                   placeholder="Start date">
+            <input type="text" id="reservation_start_date_view" name="start_date_view" class="form-control" disabled value="{{ $start_date }}">
         </div>
         <div class="col-md-6">
             <label>Check Out</label>
-            <input type="text" id="reservation_end_date" name="end_date" class="form-control" placeholder="End date">
+            <input type="text" id="reservation_end_date_view" name="end_date_view" class="form-control" disabled value="{{ $end_date }}">
         </div>
     </div>
-
+    <input type="hidden" id="reservation_start_date" name="start_date" class="form-control"  value="{{ $start_date }}">
+    <input type="hidden" id="reservation_end_date" name="end_date" class="form-control"  value="{{ $end_date }}">
     <input type="hidden" name="room_id" value="{{ $room->id }}">
     <input type="hidden" id="price" name="price" value="{{ $room->price }}">
     <input type="hidden" name="total" id="reservation_total" value="123">

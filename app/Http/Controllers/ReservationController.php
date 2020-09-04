@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -22,7 +23,7 @@ class ReservationController extends Controller
             'message' => 'Your Reservation created',
             'alert-type' => 'success'
         );
-
+        DB::table('temp')->delete();
         return redirect()->route('rooms.show', $request->room_id)->with($notification);
     }
 

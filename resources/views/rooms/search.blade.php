@@ -29,7 +29,7 @@
         <div class="col-md-4">
             <div class="panel panel-default" style="height: 300px">
                 <div class="panel-heading preview">
-                    <img src="{{ asset("images/rooms/".$room->photos[0]->name) }}" style="width:378px;height:200px">
+                    <img src="{{ asset("images/rooms/".$room->photos[0]->name) }}" style="width:100%;height:200px">
                 </div>
                 <div class="panel-body">
                     <img class="img-circle avatar-small" src="{{ Gravatar::get($room->user->email) }}" alt="">

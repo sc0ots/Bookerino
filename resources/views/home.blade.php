@@ -10,11 +10,19 @@
             <div class="row">
                 <div class="col-md-6">
 
-                    <input list="cities" name="city" id="city" class="form-control" placeholder="Where are you going?">
+                    <input list="cities" name="city" id="city" class="form-control" placeholder="Where are you going?"
+                        select>
                     <datalist id="cities">
                         <option value="Ho Chi Minh">
                         <option value="Phu Quoc">
                         <option value="Ang Giang">
+                        <option value="Vung Tau">
+                        <option value="Bac Lieu">
+                        <option value="Da Nang">
+                        <option value="Quang Nam">
+                        <option value="Hue">
+                        <option value="Ha Noi">
+                        <option value="Hai Phong">
                     </datalist>
                 </div>
 
@@ -40,7 +48,7 @@
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
-                            <option value="6">6+</option>
+                            <option value="6">6</option>
                         </select>
                     </div>
                 </div>
@@ -52,7 +60,7 @@
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                            <option value="4">4+</option>
+                            <option value="4">4</option>
                         </select>
                     </div>
                 </div>
@@ -64,102 +72,70 @@
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                            <option value="4">4+</option>
+                            <option value="4">4</option>
                         </select>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    
+
 
     <hr>
 
     <div class="text-center">
         <h2>Just for the weekend</h2>
-        <p>Discover new, inspiring places close to home.</p>
+        <p>Discover new, inspiring places in Viet Nam.</p>
     </div>
 
     <br>
 
+
     <div class="row">
-        <div class="col-md-4 col-sm-12">
-            <a href='{{url("rooms/city/")}}'>
-                <div class="discovery-card" style="background-image: url({{ asset('/images/New_York.jpeg') }})">
-                    <div class="va-container">
-                        <div class="va-middle text-center">
-                            <h2><strong>Ho Chi Minh</strong></h2>
-                        </div>
-                    </div>
+        @foreach($rooms as $room)
+        <div class="col-md-4">
+            <div class="panel panel-default" style="height: 320px">
+                <div class="panel-heading preview">
+                    <img src="{{ asset("images/rooms/".$room->photos[0]->name) }}" style="width:100%;height:200px">
                 </div>
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href='{{url("rooms/city/Phu Quoc")}}'>
-                <div class="discovery-card" style="background-image: url({{ asset('/images/San_Francisco.jpeg') }})">
-                    <div class="va-container">
-                        <div class="va-middle text-center">
-                            <h2><strong>San Francisco</strong></h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="">
-                <div class="discovery-card" style="background-image: url({{ asset('/images/Chicago.jpeg') }})">
-                    <div class="va-container">
-                        <div class="va-middle text-center">
-                            <h2><strong>Chicago</strong></h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+                <div class="panel-body">
+                    <img class="img-circle avatar-small" src="{{ Gravatar::get($room->user->email) }}" alt="">
+                    <a href='{{url("rooms/show/{$room->id}")}}'>{{ $room->listing_name }}</a>
+                    <br>
+                    <div class="row">
 
-        <br>
-
-        <div class="text-center">
-            <h2>Explore the world</h2>
-            <p>See where people are travelling, all around the world.</p>
-        </div>
-
-        <br>
-
-        <div class="row">
-            @foreach($rooms as $room)
-            <div class="col-md-4">
-                <div class="panel panel-default" style="height: 300px">
-                    <div class="panel-heading preview">
-                        <img src="{{ asset("images/rooms/".$room->photos[0]->name) }}" style="width:384px;height:200px">
-                    </div>
-                    <div class="panel-body">
-                        <img class="img-circle avatar-small" src="{{ Gravatar::get($room->user->email) }}" alt="">
-                        <a href='{{url("rooms/show/{$room->id}")}}'>{{ $room->listing_name }}</a>
-                        <br>
-                        <div class="row">
-
-                            <div class="row text-center row-space-1">
-                                <div class="col-sm-4">
-                                    <i class="fa fa-home "> </i> &nbsp{{$room->home_type}}
-                                </div>
-                                <div class="col-sm-2">
-                                    <i class="fa fa-users "> &nbsp </i>{{ $room->accommodate }}
-                                </div>
-                                <div class="col-sm-2">
-                                    <i class="fa fa-bed "> &nbsp </i>{{ $room->bed_room }}
-                                </div>
-                                <div class="col-sm-2">
-                                    <i class="fa fa-bath "> &nbsp </i>{{ $room->bath_room }}
-                                </div>
+                        <div class="row text-center row-space-1">
+                            <div class="col-sm-4">
+                                <i class="fa fa-home "> </i> &nbsp{{$room->home_type}}
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa fa-users "> &nbsp </i>{{ $room->accommodate }}
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa fa-bed "> &nbsp </i>{{ $room->bed_room }}
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa fa-bath "> &nbsp </i>{{ $room->bath_room }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
+
+    <br>
+
+    <div class="text-center">
+        <h2>Explore Viet Nam</h2>
+
+    </div>
+
+    <br>
+
+
+</div>
 </div>
 </div>
 @endsection

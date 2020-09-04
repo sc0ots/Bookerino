@@ -8,6 +8,7 @@ use App\Room;
 use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Image;
 
 class RoomController extends Controller
@@ -72,8 +73,10 @@ class RoomController extends Controller
 
     public function show($id)
     {
+        $start_date = DB::table('temp')->value('start_date');
+        $end_date = DB::table('temp')->value('end_date');
         $room = Room::find($id);
-        return view('rooms.show', compact('room'));
+        return view('rooms.show', compact('room','start_date','end_date'));
     }
 
     public function search(Request $request)
@@ -81,6 +84,9 @@ class RoomController extends Controller
         
         $start_date = $request ->input('start_date');
         $end_date = $request ->input('end_date');
+        DB::table('temp')->insert(
+            ['start_date' => $start_date, 'end_date' => $end_date]
+        );
         $accommodate = $request->input('accommodate');
         $bed_room = $request->input('bed_room');
         $bath_room = $request->input('bath_room');

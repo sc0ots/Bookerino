@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $rooms = Room::all();
+        $rooms = Room::inRandomOrder()->limit(6)->get();
         return view('home', compact('rooms'));
     }
 }
