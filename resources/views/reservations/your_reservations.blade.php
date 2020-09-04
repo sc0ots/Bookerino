@@ -23,6 +23,7 @@
 
                     @foreach($rooms as $room)
                         @foreach($room->reservations as $reservation)
+                        
                             <div class="row">
                                 <div class="col-md-2">
                                     {{ \Carbon\Carbon::parse($reservation->start_date)->diffForHumans() }}

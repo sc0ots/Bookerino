@@ -9,7 +9,7 @@
             <!-- image -->
             <div class="row">
                 <div class="col-md-12">
-                    <img style="width: 100%" src="{{asset('/images/rooms/' . $room->photos[0]->name)}}"
+                    <img style="width: 100%;height:400px" src="{{asset('/images/rooms/' . $room->photos[0]->name)}}"
                          class="img-responsive center-block">
                 </div>
             </div>
@@ -129,7 +129,7 @@
                             @if($room->photos)
                                 @foreach($room->photos as $photo)
                                     <div class="item {{ $room->photos[0]->id == $photo->id ? 'active': '' }}">
-                                        <img src="{{ asset("images/rooms/".$photo->name) }}">
+                                        <img src="{{ asset("images/rooms/".$photo->name) }}"style="width: 100%;height:400px">
                                     </div>
                                 @endforeach
                             @endif
